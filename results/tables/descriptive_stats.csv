@@ -1,0 +1,11 @@
+feature,type,mean,std,min,median,max,mean_healthy,mean_disease
+Age,numeric,50.394,17.642,20.0,51.0,80.0,47.347,52.881
+BMI,numeric,27.7,7.21,15.005,27.925,39.993,26.362,28.792
+AlcoholConsumption,numeric,9.832,5.757,0.004,9.828,19.952,7.605,11.65
+PhysicalActivity,numeric,5.001,2.847,0.002,5.023,9.995,5.369,4.701
+LiverFunctionTest,numeric,59.864,22.996,20.019,59.513,99.991,50.856,67.217
+Gender,binary,0.504,0.5,0.0,1.0,1.0,0.399,0.59
+Smoking,binary,0.292,0.455,0.0,0.0,1.0,0.191,0.374
+Diabetes,binary,0.142,0.35,0.0,0.0,1.0,0.101,0.176
+Hypertension,binary,0.155,0.362,0.0,0.0,1.0,0.086,0.21
+GeneticRisk,ordinal,0.522,0.666,0.0,0.0,2.0,0.435,0.593

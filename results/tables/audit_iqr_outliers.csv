@@ -1,0 +1,6 @@
+feature,q1,q3,lower_fence,upper_fence,outliers
+Age,35.0,66.0,-11.5,112.5,0
+BMI,21.46,33.96,2.7,52.71,0
+AlcoholConsumption,4.84,14.87,-10.2,29.92,0
+PhysicalActivity,2.62,7.4,-4.55,14.57,0
+LiverFunctionTest,40.02,79.43,-19.08,138.54,0

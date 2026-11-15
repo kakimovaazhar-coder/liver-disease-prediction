@@ -1,0 +1,31 @@
+model,feature,importance_mean,importance_std
+Logistic Regression,Age,0.0237,0.0056
+Logistic Regression,BMI,0.02014,0.00484
+Logistic Regression,AlcoholConsumption,0.13976,0.01537
+Logistic Regression,PhysicalActivity,0.01038,0.00382
+Logistic Regression,LiverFunctionTest,0.13058,0.01533
+Logistic Regression,Gender,0.0243,0.00595
+Logistic Regression,Smoking,0.03765,0.00815
+Logistic Regression,Diabetes,0.00826,0.00389
+Logistic Regression,Hypertension,0.02024,0.00612
+Logistic Regression,GeneticRisk,0.04331,0.00464
+Random Forest,Age,0.04056,0.00663
+Random Forest,BMI,0.03155,0.00649
+Random Forest,AlcoholConsumption,0.17303,0.01628
+Random Forest,PhysicalActivity,0.01954,0.00448
+Random Forest,LiverFunctionTest,0.17708,0.01751
+Random Forest,Gender,0.03108,0.00569
+Random Forest,Smoking,0.03406,0.00487
+Random Forest,Diabetes,0.00801,0.0024
+Random Forest,Hypertension,0.02239,0.0044
+Random Forest,GeneticRisk,0.03397,0.00471
+HistGradientBoosting,Age,0.04026,0.00648
+HistGradientBoosting,BMI,0.02947,0.00652
+HistGradientBoosting,AlcoholConsumption,0.15962,0.01416
+HistGradientBoosting,PhysicalActivity,0.02032,0.00445
+HistGradientBoosting,LiverFunctionTest,0.16169,0.017
+HistGradientBoosting,Gender,0.03097,0.00497
+HistGradientBoosting,Smoking,0.03424,0.00496
+HistGradientBoosting,Diabetes,0.00953,0.00288
+HistGradientBoosting,Hypertension,0.02325,0.00425
+HistGradientBoosting,GeneticRisk,0.03581,0.00469

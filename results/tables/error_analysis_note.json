@@ -1,0 +1,6 @@
+{
+  "model": "HistGradientBoosting",
+  "errors": 33,
+  "test_cases_in_0.4-0.6": 31,
+  "share_of_errors_in_0.4-0.6": 0.455
+}

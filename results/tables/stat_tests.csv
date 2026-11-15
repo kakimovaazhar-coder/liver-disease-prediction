@@ -1,0 +1,11 @@
+feature,test,statistic,dof,p_value,effect_size,effect_measure,median_disease,median_healthy,p_holm,significant
+Gender,chi-square,60.32479,1.0,0.0,0.18838,Cramer's V,,,0.0,True
+Smoking,chi-square,67.16604,1.0,0.0,0.19877,Cramer's V,,,0.0,True
+Diabetes,chi-square,19.02467,1.0,1e-05,0.10579,Cramer's V,,,1e-05,True
+Hypertension,chi-square,48.58107,1.0,0.0,0.16905,Cramer's V,,,0.0,True
+GeneticRisk,chi-square,61.58356,2.0,0.0,0.19033,Cramer's V,,,0.0,True
+Age,Mann-Whitney U,423015.5,,0.0,0.18309,rank-biserial r,54.0,45.0,0.0,True
+BMI,Mann-Whitney U,426509.0,,0.0,0.19286,rank-biserial r,29.19079,25.64741,0.0,True
+AlcoholConsumption,Mann-Whitney U,501870.0,,0.0,0.40363,rank-biserial r,12.52779,6.4755,0.0,True
+PhysicalActivity,Mann-Whitney U,309848.0,,0.0,-0.13342,rank-biserial r,4.62098,5.36412,0.0,True
+LiverFunctionTest,Mann-Whitney U,505687.0,,0.0,0.4143,rank-biserial r,68.4696,45.3772,0.0,True

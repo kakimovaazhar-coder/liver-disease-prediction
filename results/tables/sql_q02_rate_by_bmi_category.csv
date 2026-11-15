@@ -1,0 +1,5 @@
+bmi_category,n,mean_alcohol,mean_activity,disease_rate_pct
+Underweight,243,10.07,5.16,39.9
+Normal,400,9.97,4.92,46.3
+Overweight,360,9.51,5.08,59.7
+Obese,697,9.83,4.95,63.0

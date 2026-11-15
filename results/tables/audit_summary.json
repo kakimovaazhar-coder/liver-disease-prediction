@@ -1,0 +1,41 @@
+{
+  "rows": 1700,
+  "total_missing": 0,
+  "duplicate_rows": 0,
+  "duplicate_feature_vectors": 0,
+  "range_violations": {
+    "Age": 0,
+    "BMI": 0,
+    "AlcoholConsumption": 0,
+    "PhysicalActivity": 0,
+    "LiverFunctionTest": 0,
+    "Gender": 0,
+    "Smoking": 0,
+    "Diabetes": 0,
+    "Hypertension": 0,
+    "GeneticRisk": 0,
+    "Diagnosis": 0
+  },
+  "iqr_outliers_total": 0,
+  "target_balance": {
+    "0": 764,
+    "1": 936
+  },
+  "max_abs_feature_correlation": 0.049,
+  "uniform_features": [
+    "Age",
+    "BMI",
+    "AlcoholConsumption",
+    "PhysicalActivity",
+    "LiverFunctionTest"
+  ],
+  "significant_natural_pairs": 1,
+  "checked_natural_pairs": 7,
+  "median_decimals": {
+    "BMI": 15,
+    "AlcoholConsumption": 15,
+    "PhysicalActivity": 15,
+    "LiverFunctionTest": 14
+  },
+  "origin_verdict": "SYNTHETIC (very likely)"
+}

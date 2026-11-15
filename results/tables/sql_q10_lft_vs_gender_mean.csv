@@ -1,0 +1,5 @@
+gender,lft_position,n,disease_rate_pct
+Female,above gender mean,430,80.0
+Female,below gender mean,427,48.7
+Male,above gender mean,416,61.3
+Male,below gender mean,427,30.2

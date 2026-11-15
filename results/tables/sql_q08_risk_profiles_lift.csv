@@ -1,0 +1,7 @@
+smoking,genetic_risk,n,disease_rate_pct,lift
+smoker,High,46,95.7,1.74
+non-smoker,High,119,79.0,1.43
+smoker,Medium,163,68.7,1.25
+smoker,Low,287,67.6,1.23
+non-smoker,Low,691,47.0,0.85
+non-smoker,Medium,394,42.4,0.77

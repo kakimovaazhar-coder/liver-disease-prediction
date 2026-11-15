@@ -1,0 +1,5 @@
+model_name,roc_auc,f1,brier,fit_time_s,model_size_kb,auc_rank
+HistGradientBoosting,0.9602,0.9086,0.0803,0.146,115.0,1
+Random Forest,0.9575,0.903,0.0943,0.764,7562.0,2
+Logistic Regression,0.9146,0.8455,0.1165,0.032,4.5,3
+Dummy (baseline),0.5,0.7097,0.2475,0.019,4.1,4

@@ -1,0 +1,64 @@
+{
+  "rows": 1700,
+  "columns": 11,
+  "csv_size_kb": 146.7,
+  "parquet_size_kb": 76.5,
+  "memory_default_mb": 0.1428,
+  "memory_optimized_mb": 0.0374,
+  "memory_reduction_pct": 73.8,
+  "read_time_default_s": 0.0114,
+  "read_time_chunked_s": 0.0305,
+  "dtypes_default": {
+    "Age": "int64",
+    "Gender": "int64",
+    "BMI": "float64",
+    "AlcoholConsumption": "float64",
+    "Smoking": "int64",
+    "GeneticRisk": "int64",
+    "PhysicalActivity": "float64",
+    "Diabetes": "int64",
+    "Hypertension": "int64",
+    "LiverFunctionTest": "float64",
+    "Diagnosis": "int64"
+  },
+  "dtypes_optimized": {
+    "pseudo_id": "object",
+    "Age": "uint8",
+    "Gender": "uint8",
+    "BMI": "float32",
+    "AlcoholConsumption": "float32",
+    "Smoking": "uint8",
+    "GeneticRisk": "uint8",
+    "PhysicalActivity": "float32",
+    "Diabetes": "uint8",
+    "Hypertension": "uint8",
+    "LiverFunctionTest": "float32",
+    "Diagnosis": "uint8"
+  },
+  "chunks": [
+    {
+      "chunk": 0,
+      "rows": 500,
+      "mb_before": 0.0421,
+      "mb_after": 0.0111
+    },
+    {
+      "chunk": 1,
+      "rows": 500,
+      "mb_before": 0.0421,
+      "mb_after": 0.0111
+    },
+    {
+      "chunk": 2,
+      "rows": 500,
+      "mb_before": 0.0421,
+      "mb_after": 0.0111
+    },
+    {
+      "chunk": 3,
+      "rows": 200,
+      "mb_before": 0.0169,
+      "mb_after": 0.0045
+    }
+  ]
+}

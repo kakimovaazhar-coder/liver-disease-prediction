@@ -1,0 +1,5 @@
+feature,crude_OR,ci_low,ci_high
+Gender,2.161,1.779,2.626
+Smoking,2.523,2.018,3.155
+Diabetes,1.903,1.426,2.54
+Hypertension,2.805,2.085,3.773

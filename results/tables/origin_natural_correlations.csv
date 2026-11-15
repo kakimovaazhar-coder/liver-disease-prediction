@@ -1,0 +1,8 @@
+pair,spearman_r,p_value,significant
+Age ~ Hypertension,0.001,0.9722,False
+Age ~ Diabetes,0.024,0.3269,False
+BMI ~ Diabetes,-0.009,0.71,False
+BMI ~ Hypertension,-0.005,0.8353,False
+BMI ~ PhysicalActivity,-0.01,0.6688,False
+Diabetes ~ Hypertension,0.049,0.0427,True
+AlcoholConsumption ~ Smoking,-0.015,0.5493,False

@@ -1,0 +1,6 @@
+feature,min,max,skewness,kurtosis,test,statistic,p_value,looks_uniform
+Age,20.0,80.0,-0.041,-1.172,chi-square vs discrete uniform,64.4071,0.3251,True
+BMI,15.0,39.99,-0.072,-1.18,KS vs continuous uniform,0.0318,0.0626,True
+AlcoholConsumption,0.0,19.95,0.018,-1.224,KS vs continuous uniform,0.0258,0.2047,True
+PhysicalActivity,0.0,9.99,-0.023,-1.135,KS vs continuous uniform,0.019,0.5676,True
+LiverFunctionTest,20.02,99.99,0.04,-1.185,KS vs continuous uniform,0.0167,0.7235,True

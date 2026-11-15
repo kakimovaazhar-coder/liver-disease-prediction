@@ -1,0 +1,12 @@
+feature,coef,adjusted_OR,ci_low,ci_high,p_value,unit
+Age,0.6499,1.9153,1.6568,2.2143,0.0,per 1 SD
+BMI,0.6216,1.862,1.6136,2.1486,0.0,per 1 SD
+AlcoholConsumption,1.4335,4.1933,3.5287,4.983,0.0,per 1 SD
+PhysicalActivity,-0.3934,0.6748,0.5864,0.7764,0.0,per 1 SD
+LiverFunctionTest,1.3949,4.0347,3.4046,4.7815,0.0,per 1 SD
+Gender,1.4565,4.2908,3.2035,5.747,0.0,female vs male
+Smoking,1.8875,6.6028,4.7175,9.2416,0.0,yes vs no
+Diabetes,1.1725,3.2302,2.1011,4.9661,0.0,yes vs no
+Hypertension,1.6421,5.1661,3.3936,7.8644,0.0,yes vs no
+GeneticRisk_Medium,-0.1232,0.8841,0.658,1.1879,0.4136,level vs Low
+GeneticRisk_High,2.6783,14.5596,8.1935,25.872,0.0,level vs Low
