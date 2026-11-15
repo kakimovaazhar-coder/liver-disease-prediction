@@ -5,6 +5,8 @@
 
 **Команда (AAI-2603):** Какимова Ажар, Зулхаирова Молдир.
 
+**Репозиторий:** <https://github.com/kakimovaazhar-coder/liver-disease-prediction>
+
 ## Цель
 
 Оценить связь факторов образа жизни и клинических факторов с заболеванием печени
@@ -39,8 +41,8 @@
 Требуется Python 3.10+.
 
 ```bash
-git clone <URL этого репозитория>
-cd liver-disease-project
+git clone https://github.com/kakimovaazhar-coder/liver-disease-prediction.git
+cd liver-disease-prediction
 python -m venv .venv
 # Windows: .venv\Scripts\activate    Linux/macOS: source .venv/bin/activate
 pip install -r requirements.txt
