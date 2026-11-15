@@ -4,7 +4,7 @@ Dep. Variable:              Diagnosis   No. Observations:                 1700
 Model:                          Logit   Df Residuals:                     1688
 Method:                           MLE   Df Model:                           11
 Date:                Sun, 15 Nov 2026   Pseudo R-squ.:                  0.4534
-Time:                        18:47:22   Log-Likelihood:                -639.26
+Time:                        21:05:42   Log-Likelihood:                -639.26
 converged:                       True   LL-Null:                       -1169.6
 Covariance Type:            nonrobust   LLR p-value:                1.616e-220
 ======================================================================================

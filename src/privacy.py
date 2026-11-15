@@ -1,9 +1,5 @@
-"""Personal-data protection helpers.
-
-The published file has no direct identifiers, but the Cluster 6 rules require
-pseudonymisation before storing records in the database and suppression of
-small groups (< 10 patients) in every published table or chart.
-"""
+# privacy stuff: hash the record id with a salt and hide groups < 10 people
+# (rules of cluster 6)
 import hashlib
 import os
 import secrets

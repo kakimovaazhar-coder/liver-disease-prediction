@@ -1,8 +1,4 @@
-"""Streamlit mini-dashboard.
-
-Run from the project root:
-    streamlit run app/dashboard.py
-"""
+# streamlit dashboard, run: streamlit run app/dashboard.py
 import sys
 from pathlib import Path
 
@@ -10,15 +6,15 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-import pandas as pd                       # noqa: E402
-import plotly.express as px               # noqa: E402
-import streamlit as st                    # noqa: E402
+import pandas as pd
+import plotly.express as px
+import streamlit as st
 
-from src import config                    # noqa: E402
-from src.data_loader import load_clean    # noqa: E402
-from src.database import AGE_GROUPS, BMI_CATEGORIES, run_query  # noqa: E402
-from src.predict import QUESTIONS, load_best_model, predict_patient  # noqa: E402
-from src.privacy import suppress_small_groups  # noqa: E402
+from src import config
+from src.data_loader import load_clean
+from src.database import AGE_GROUPS, BMI_CATEGORIES, run_query
+from src.predict import QUESTIONS, load_best_model, predict_patient
+from src.privacy import suppress_small_groups
 
 st.set_page_config(page_title="Liver Disease Analytics", layout="wide")
 
@@ -41,7 +37,6 @@ st.title("Liver Disease Risk Factors & Diagnosis Prediction")
 st.caption("Smart Data Ukimet (data.gov.kz) dataset, 1 700 records. The audit shows "
            "the data are synthetic - conclusions are methodological, not clinical.")
 
-# ---------------- sidebar filters
 st.sidebar.header("Filters")
 genders = st.sidebar.multiselect("Gender", ["Male", "Female"], ["Male", "Female"])
 age_range = st.sidebar.slider("Age", 20, 80, (20, 80))

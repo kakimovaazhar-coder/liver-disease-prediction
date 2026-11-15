@@ -1,16 +1,13 @@
-"""Liver Disease Risk Factors and Diagnosis Prediction - console application.
-
-Run:
-    python main.py          interactive menu
-    python main.py --all    run the whole pipeline without questions
-"""
+# Liver Disease Risk Factors and Diagnosis Prediction
+# python main.py        -> menu
+# python main.py --all  -> run everything
 import json
 import sys
 from datetime import datetime
 
 from src import config
 
-# Windows consoles often use cp1251; force UTF-8 so tables print correctly
+# windows console is cp1251 by default, without this some symbols crash print
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
@@ -112,19 +109,19 @@ def step_predict():
 STEPS = {"1": step_load, "2": step_audit, "3": step_database, "4": step_sql,
          "5": step_eda, "6": step_stats, "7": step_models, "8": step_benchmark,
          "9": step_predict}
-PIPELINE = ["1", "2", "3", "5", "6", "7", "4", "8"]   # SQL after models -> leaderboard
+PIPELINE = ["1", "2", "3", "5", "6", "7", "4", "8"]   # sql after models to see the leaderboard
 
 
 def run_step(key: str, state: dict) -> bool:
     """Execute one menu item, catching and reporting any error."""
-    print(f"\n{'=' * 70}\n{key}. {MENU[key]}\n{'=' * 70}")
+    print(f"\n[{key}] {MENU[key]}")
     try:
         STEPS[key]()
         ok = True
     except KeyboardInterrupt:
         print("\nInterrupted by user.")
         ok = False
-    except Exception as err:            # keep the menu alive after any failure
+    except Exception as err:            # so the menu doesn't crash
         print(f"[ERROR] {type(err).__name__}: {err}")
         ok = False
     save_state(state, MENU[key], ok)
@@ -145,7 +142,7 @@ def main() -> None:
         run_pipeline(state)
         return
     while True:
-        print("\n=== Liver Disease Risk Factors & Diagnosis Prediction ===")
+        print("\nMain menu:")
         for key, text in MENU.items():
             print(f"  {key:>2} - {text}")
         choice = input("Choose an option: ").strip()

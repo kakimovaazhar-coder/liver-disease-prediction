@@ -1,14 +1,10 @@
 
-======================================================================
-1. Load data (chunks -> optimised dtypes -> Parquet)
-======================================================================
+[1] Load data (chunks -> optimised dtypes -> Parquet)
 Rows: 1700, chunks: 4
 Memory: 0.1428 MB (default) -> 0.0374 MB (optimised), -73.8%
 File size: CSV 146.7 KB -> Parquet 76.5 KB
 
-======================================================================
-2. Data quality audit + real/synthetic origin check
-======================================================================
+[2] Data quality audit + real/synthetic origin check
 Missing values: 0
 Duplicate rows: 0
 Range violations: {}
@@ -42,9 +38,7 @@ Median decimals in float columns: {'BMI': 15, 'AlcoholConsumption': 15, 'Physica
 
 >>> Data origin verdict: SYNTHETIC (very likely)
 
-======================================================================
-3. Build SQLite database + ER diagram
-======================================================================
+[3] Build SQLite database + ER diagram
 SQLite 3.40.1 database: D:\maga 1 trim\лекции прога ии\liver-disease-project\data\liver.db
   gender                     2 rows
   age_group                  6 rows
@@ -58,9 +52,7 @@ SQLite 3.40.1 database: D:\maga 1 trim\лекции прога ии\liver-diseas
   diagnosis               1700 rows
 ER diagram: D:\maga 1 trim\лекции прога ии\liver-disease-project\docs\er_diagram.png
 
-======================================================================
-5. EDA and visualisations
-======================================================================
+[5] EDA and visualisations
            feature    type   mean    std    min  median    max  mean_healthy  mean_disease
                Age numeric 50.394 17.642 20.000  51.000 80.000        47.347        52.881
                BMI numeric 27.700  7.210 15.005  27.925 39.993        26.362        28.792
@@ -82,9 +74,7 @@ Saved figures:
    D:\maga 1 trim\лекции прога ии\liver-disease-project\results\figures\06_binned_rates.png
    D:\maga 1 trim\лекции прога ии\liver-disease-project\results\figures\07_interactive_scatter.html
 
-======================================================================
-6. Statistical tests and odds ratios
-======================================================================
+[6] Statistical tests and odds ratios
            feature           test   statistic  p_value  p_holm  effect_size  effect_measure  significant
             Gender     chi-square     60.3248      0.0     0.0       0.1884      Cramer's V         True
            Smoking     chi-square     67.1660      0.0     0.0       0.1988      Cramer's V         True
@@ -121,20 +111,18 @@ GeneticRisk_Medium        0.884   0.658    1.188    0.414   level vs Low
 Pseudo R^2 (McFadden): 0.453
 Forest plot: D:\maga 1 trim\лекции прога ии\liver-disease-project\results\figures\08_forest_plot_odds_ratios.png
 
-======================================================================
-7. Train and compare models (Dummy / LR / RF / HGB)
-======================================================================
+[7] Train and compare models (Dummy / LR / RF / HGB)
 Split / leakage check: {'train_rows': 1360, 'test_rows': 340, 'identical_rows_in_both': 0, 'train_positive_rate': 0.5507, 'test_positive_rate': 0.55}
-Dummy (baseline)       CV ROC-AUC = 0.5000 +/- 0.0000  (1 configs, 8.3s)  best: {'clf__strategy': 'prior'}
-Logistic Regression    CV ROC-AUC = 0.9139 +/- 0.0130  (10 configs, 6.7s)  best: {'clf__C': 10.0, 'clf__class_weight': None}
-Random Forest          CV ROC-AUC = 0.9401 +/- 0.0097  (18 configs, 23.1s)  best: {'clf__max_depth': 10, 'clf__max_features': 'sqrt', 'clf__min_samples_leaf': 1, 'clf__n_estimators': 300}
-HistGradientBoosting   CV ROC-AUC = 0.9474 +/- 0.0091  (16 configs, 7.2s)  best: {'clf__l2_regularization': 0.0, 'clf__learning_rate': 0.1, 'clf__max_depth': 3, 'clf__max_leaf_nodes': 15}
+Dummy (baseline)       CV ROC-AUC = 0.5000 +/- 0.0000  (1 configs, 7.6s)  best: {'clf__strategy': 'prior'}
+Logistic Regression    CV ROC-AUC = 0.9139 +/- 0.0130  (10 configs, 5.6s)  best: {'clf__C': 10.0, 'clf__class_weight': None}
+Random Forest          CV ROC-AUC = 0.9401 +/- 0.0097  (18 configs, 19.5s)  best: {'clf__max_depth': 10, 'clf__max_features': 'sqrt', 'clf__min_samples_leaf': 1, 'clf__n_estimators': 300}
+HistGradientBoosting   CV ROC-AUC = 0.9474 +/- 0.0091  (16 configs, 5.9s)  best: {'clf__l2_regularization': 0.0, 'clf__learning_rate': 0.1, 'clf__max_depth': 3, 'clf__max_leaf_nodes': 15}
 
                 model  roc_auc  pr_auc     f1  accuracy  recall  brier  cv_roc_auc_mean  fit_time_s  model_size_kb  predict_ms_per_1000
-    Dummy (baseline)   0.5000  0.5500 0.7097    0.5500  1.0000 0.2475           0.5000      0.0195         4.1270              12.6503
- Logistic Regression   0.9146  0.9220 0.8455    0.8324  0.8342 0.1165           0.9139      0.0321         4.5098              11.0395
-       Random Forest   0.9575  0.9541 0.9030    0.8971  0.8717 0.0943           0.9401      0.7643      7561.9951              75.3687
-HistGradientBoosting   0.9602  0.9630 0.9086    0.9029  0.8770 0.0803           0.9474      0.1456       114.9707              10.8991
+    Dummy (baseline)   0.5000  0.5500 0.7097    0.5500  1.0000 0.2475           0.5000      0.0289         4.1270               6.3206
+ Logistic Regression   0.9146  0.9220 0.8455    0.8324  0.8342 0.1165           0.9139      0.0191         4.5098               5.6703
+       Random Forest   0.9575  0.9541 0.9030    0.8971  0.8717 0.0943           0.9401      0.8502      7561.9951              37.4976
+HistGradientBoosting   0.9602  0.9630 0.9086    0.9029  0.8770 0.0803           0.9474      0.1086       114.9707              17.1552
 
 Best model (chosen by CV ROC-AUC, not by test): HistGradientBoosting
 
@@ -146,11 +134,9 @@ FP        10  40.00  29.90               11.25              5.64              69
 TN       143  48.68  26.51                7.02              5.28              48.73    0.45     0.15      0.12          0.08         0.43   0.16
 TP       164  54.40  28.95               12.28              4.55              70.32    0.55     0.37      0.17          0.20         0.59   0.86
 
-======================================================================
-4. Run analytical SQL queries
-======================================================================
+[4] Run analytical SQL queries
 
-=== q01_rate_by_gender_age: Disease rate by gender and age group (JOIN x4, GROUP BY, HAVING)
+q01_rate_by_gender_age - Disease rate by gender and age group (JOIN x4, GROUP BY, HAVING)
 gender age_group   n  disease_rate_pct
 Female     20-29 131              51.1
 Female     30-39 140              56.4
@@ -165,25 +151,25 @@ Female     70-80 163              74.8
   Male     60-69 123              49.6
   Male     70-80 164              49.4
 
-=== q02_rate_by_bmi_category: Disease rate and mean lifestyle values by WHO BMI category (JOIN, GROUP BY, HAVING)
+q02_rate_by_bmi_category - Disease rate and mean lifestyle values by WHO BMI category (JOIN, GROUP BY, HAVING)
 bmi_category   n  mean_alcohol  mean_activity  disease_rate_pct
  Underweight 243         10.07           5.16              39.9
       Normal 400          9.97           4.92              46.3
   Overweight 360          9.51           5.08              59.7
        Obese 697          9.83           4.95              63.0
 
-=== q03_comorbidity_burden: Disease rate by number of comorbidities (CTE over the many-to-many table, LEFT JOIN)
+q03_comorbidity_burden - Disease rate by number of comorbidities (CTE over the many-to-many table, LEFT JOIN)
  n_comorbidities    n  disease_rate_pct
                0 1243              49.0
                1  409              71.4
                2   48              72.9
 
-=== q04_heavy_drinkers_subquery: Patients drinking more than the average healthy patient (scalar subquery)
+q04_heavy_drinkers_subquery - Patients drinking more than the average healthy patient (scalar subquery)
         alcohol_level    n  disease_rate_pct
    above healthy mean 1024              68.5
 at/below healthy mean  676              34.8
 
-=== q05_rank_age_groups: Ranking of age groups by disease rate (CTE + RANK window function)
+q05_rank_age_groups - Ranking of age groups by disease rate (CTE + RANK window function)
 age_group   n  disease_rate_pct  risk_rank
     50-59 297              68.4          1
     60-69 254              63.8          2
@@ -192,7 +178,7 @@ age_group   n  disease_rate_pct  risk_rank
     20-29 278              45.0          5
     40-49 302              41.7          6
 
-=== q06_lft_quintiles: Liver function test quintiles (NTILE window) and disease rate
+q06_lft_quintiles - Liver function test quintiles (NTILE window) and disease rate
  lft_quintile   n  lft_min  lft_max  disease_rate_pct
             1 340     20.0     36.3              28.5
             2 340     36.3     51.4              33.5
@@ -200,7 +186,7 @@ age_group   n  disease_rate_pct  risk_rank
             4 340     66.8     84.4              71.2
             5 340     84.4    100.0              72.4
 
-=== q07_alcohol_deciles_cumulative: Alcohol deciles: cumulative share of all cases (NTILE + SUM() OVER running total)
+q07_alcohol_deciles_cumulative - Alcohol deciles: cumulative share of all cases (NTILE + SUM() OVER running total)
  alcohol_decile   n  alcohol_max  cases  disease_rate_pct  cumulative_case_share_pct
               1 170          2.0     54              31.8                        5.8
               2 170          3.9     66              38.8                       12.8
@@ -213,7 +199,7 @@ age_group   n  disease_rate_pct  risk_rank
               9 170         17.8    128              75.3                       86.8
              10 170         20.0    124              72.9                      100.0
 
-=== q08_risk_profiles_lift: Smoking x genetic-risk profiles: rate and lift vs overall rate (two CTEs, CROSS JOIN)
+q08_risk_profiles_lift - Smoking x genetic-risk profiles: rate and lift vs overall rate (two CTEs, CROSS JOIN)
    smoking genetic_risk   n  disease_rate_pct  lift
     smoker         High  46              95.7  1.74
 non-smoker         High 119              79.0  1.43
@@ -222,7 +208,7 @@ non-smoker         High 119              79.0  1.43
 non-smoker          Low 691              47.0  0.85
 non-smoker       Medium 394              42.4  0.77
 
-=== q09_age_group_lag: Change of disease rate between neighbouring age groups (LAG window)
+q09_age_group_lag - Change of disease rate between neighbouring age groups (LAG window)
 age_group  disease_rate_pct  change_vs_previous_pp
     20-29              45.0                    NaN
     30-39              48.3                    3.4
@@ -231,37 +217,35 @@ age_group  disease_rate_pct  change_vs_previous_pp
     60-69              63.8                   -4.6
     70-80              62.1                   -1.7
 
-=== q10_lft_vs_gender_mean: Liver function test relative to the gender mean (AVG() OVER PARTITION BY)
+q10_lft_vs_gender_mean - Liver function test relative to the gender mean (AVG() OVER PARTITION BY)
 gender      lft_position   n  disease_rate_pct
 Female above gender mean 430              80.0
 Female below gender mean 427              48.7
   Male above gender mean 416              61.3
   Male below gender mean 427              30.2
 
-=== q11_patients_in_risk_top: Share of diseased patients among the top-10% alcohol consumers within each gender (ROW_NUMBER + subquery in WHERE)
+q11_patients_in_risk_top - Share of diseased patients among the top-10% alcohol consumers within each gender (ROW_NUMBER + subquery in WHERE)
 gender  n  disease_rate_pct
 Female 85              82.4
   Male 84              67.9
 
-=== q12_model_leaderboard: Model leaderboard from the experiment table (window RANK over stored results)
+q12_model_leaderboard - Model leaderboard from the experiment table (window RANK over stored results)
           model_name  roc_auc     f1  brier  fit_time_s  model_size_kb  auc_rank
-HistGradientBoosting   0.9602 0.9086 0.0803       0.146          115.0         1
-       Random Forest   0.9575 0.9030 0.0943       0.764         7562.0         2
- Logistic Regression   0.9146 0.8455 0.1165       0.032            4.5         3
-    Dummy (baseline)   0.5000 0.7097 0.2475       0.019            4.1         4
+HistGradientBoosting   0.9602 0.9086 0.0803       0.109          115.0         1
+       Random Forest   0.9575 0.9030 0.0943       0.850         7562.0         2
+ Logistic Regression   0.9146 0.8455 0.1165       0.019            4.5         3
+    Dummy (baseline)   0.5000 0.7097 0.2475       0.029            4.1         4
 
-======================================================================
-8. Benchmark: CSV vs Parquet, Pandas vs SQL (1M-row stress copy)
-======================================================================
+[8] Benchmark: CSV vs Parquet, Pandas vs SQL (1M-row stress copy)
 Creating stress-test copy with 1,000,000 rows ...
      task                               approach  time_s  peak_mem_mb  df_memory_mb  file_mb  result_matches_baseline
-     load         CSV, default dtypes (baseline)  1.2250     305.2362       83.9235    84.75                     True
-     load         CSV, chunks + optimised dtypes  1.1554      95.5056       21.9346    84.75                     True
-     load             Parquet (optimised dtypes)  0.0990       6.9554       21.9346     6.94                     True
-aggregate    Pandas groupby in memory (baseline)  0.1045      79.0001           NaN      NaN                     True
-aggregate Pandas groupby on Parquet (load + agg)  0.1360      79.0138           NaN      NaN                     True
-aggregate   Pandas chunked incremental agg (CSV)  1.2608      78.6840           NaN      NaN                     True
-aggregate              SQLite GROUP BY -> pandas  1.0275       0.0243           NaN    49.18                     True
+     load         CSV, default dtypes (baseline)  1.7525     305.2311       83.9235    84.75                     True
+     load         CSV, chunks + optimised dtypes  1.4279      95.5082       21.9346    84.75                     True
+     load             Parquet (optimised dtypes)  0.1605       6.9554       21.9346     6.94                     True
+aggregate    Pandas groupby in memory (baseline)  0.1147      79.0007           NaN      NaN                     True
+aggregate Pandas groupby on Parquet (load + agg)  0.1534      79.0138           NaN      NaN                     True
+aggregate   Pandas chunked incremental agg (CSV)  1.2457      78.6842           NaN      NaN                     True
+aggregate              SQLite GROUP BY -> pandas  0.9302       0.0243           NaN    49.18                     True
 
 Pipeline summary:
   [OK] Load data (chunks -> optimised dtypes -> Parquet)

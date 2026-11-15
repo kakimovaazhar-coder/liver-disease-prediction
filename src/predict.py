@@ -1,4 +1,4 @@
-"""Prediction for a new patient: interactive console input + reusable API."""
+# prediction for a new patient (console input)
 import joblib
 import pandas as pd
 

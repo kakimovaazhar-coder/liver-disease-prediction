@@ -1,11 +1,6 @@
-"""Data-processing benchmark: CSV vs Parquet and Pandas vs SQL.
-
-The original file has only 1 700 rows, so to show how the pipeline behaves
-on the recommended volume (>= 500K rows) we build a *stress-test copy* by
-resampling rows with replacement up to 1 000 000 rows. This copy is used
-ONLY to measure time and memory of data-processing approaches; it is never
-used for statistics or model training (that would duplicate patients).
-"""
+# benchmark: CSV vs Parquet and Pandas vs SQL
+# our dataset has only 1700 rows, so we make a copy with 1M rows (random
+# rows with replacement) ONLY to measure time and memory, not for analysis
 import gc
 import sqlite3
 import time
@@ -52,7 +47,7 @@ def measure(func):
     return result, seconds, peak / 1024 ** 2
 
 
-# ---- loading approaches ------------------------------------------------- #
+# loading approaches
 def read_csv_default(path):
     return pd.read_csv(path)
 
@@ -66,7 +61,7 @@ def read_parquet(path):
     return pd.read_parquet(path)
 
 
-# ---- aggregation approaches (same question, three engines) --------------- #
+# aggregation approaches (same question, three engines)
 AGG_SQL = """
 SELECT Gender, Smoking, GeneticRisk, COUNT(*) AS n,
        AVG(Diagnosis) AS rate, AVG(AlcoholConsumption) AS mean_alcohol

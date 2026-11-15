@@ -1,4 +1,4 @@
-"""SQLite database: normalised schema, loading, querying and the ER diagram."""
+# sqlite database: create tables, load data, run queries, draw ER diagram
 import sqlite3
 from contextlib import closing
 
@@ -6,8 +6,8 @@ import matplotlib
 import pandas as pd
 
 matplotlib.use("Agg")
-import matplotlib.pyplot as plt                       # noqa: E402
-from matplotlib.patches import FancyBboxPatch         # noqa: E402
+import matplotlib.pyplot as plt
+from matplotlib.patches import FancyBboxPatch
 
 from src import config
 
@@ -134,9 +134,7 @@ def load_flat_from_db() -> pd.DataFrame:
     return run_query(sql)
 
 
-# --------------------------------------------------------------------------- #
-# ER diagram (drawn with matplotlib so that no Graphviz binary is required)
-# --------------------------------------------------------------------------- #
+# ER diagram, we draw it with matplotlib (graphviz was not installed)
 ER_TABLES = {
     "gender": (["PK gender_id", "gender_label"], (0.3, 7.6)),
     "age_group": (["PK age_group_id", "label", "age_min", "age_max"], (0.3, 4.9)),

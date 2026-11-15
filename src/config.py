@@ -1,8 +1,4 @@
-"""Project-wide paths and constants.
-
-All other modules import paths from here, so the project can be run from any
-working directory (console, VS Code, PyCharm or Google Colab).
-"""
+# paths and settings used by all modules
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -22,7 +18,7 @@ BENCH_DIR = RESULTS_DIR / "benchmark_tmp"   # large temporary files, git-ignored
 SQL_DIR = ROOT / "sql"
 DOCS_DIR = ROOT / "docs"
 
-# Official source (Smart Data Ukimet / data.gov.kz)
+# data source (data.gov.kz)
 DATASET_PAGE = ("https://ashyq.data.gov.kz/dataset/"
                 "magda-ds-8ec6e917-d808-494a-b84d-177dd857d7c4/details")
 DATASET_URL = "http://s3.sdu.gov.kz/magda-datasets/Liver_disease_data.csv"
@@ -34,7 +30,7 @@ BINARY_FEATURES = ["Gender", "Smoking", "Diabetes", "Hypertension"]
 ORDINAL_FEATURES = ["GeneticRisk"]           # 0 = low, 1 = medium, 2 = high
 ALL_FEATURES = NUMERIC_FEATURES + BINARY_FEATURES + ORDINAL_FEATURES
 
-# Plausible value ranges used by the data-quality audit
+# allowed ranges for the audit
 VALID_RANGES = {
     "Age": (18, 100),
     "BMI": (10, 60),

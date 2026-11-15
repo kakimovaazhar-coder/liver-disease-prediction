@@ -1,8 +1,8 @@
 task,approach,time_s,peak_mem_mb,df_memory_mb,file_mb,result_matches_baseline
-load,"CSV, default dtypes (baseline)",1.225,305.2362,83.9235,84.75,True
-load,"CSV, chunks + optimised dtypes",1.1554,95.5056,21.9346,84.75,True
-load,Parquet (optimised dtypes),0.099,6.9554,21.9346,6.94,True
-aggregate,Pandas groupby in memory (baseline),0.1045,79.0001,,,True
-aggregate,Pandas groupby on Parquet (load + agg),0.136,79.0138,,,True
-aggregate,Pandas chunked incremental agg (CSV),1.2608,78.684,,,True
-aggregate,SQLite GROUP BY -> pandas,1.0275,0.0243,,49.18,True
+load,"CSV, default dtypes (baseline)",1.7525,305.2311,83.9235,84.75,True
+load,"CSV, chunks + optimised dtypes",1.4279,95.5082,21.9346,84.75,True
+load,Parquet (optimised dtypes),0.1605,6.9554,21.9346,6.94,True
+aggregate,Pandas groupby in memory (baseline),0.1147,79.0007,,,True
+aggregate,Pandas groupby on Parquet (load + agg),0.1534,79.0138,,,True
+aggregate,Pandas chunked incremental agg (CSV),1.2457,78.6842,,,True
+aggregate,SQLite GROUP BY -> pandas,0.9302,0.0243,,49.18,True

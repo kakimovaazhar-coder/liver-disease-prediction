@@ -1,12 +1,12 @@
-"""Exploratory data analysis: descriptive statistics and visualisations."""
+# EDA: descriptive stats and plots
 import matplotlib
 import numpy as np
 import pandas as pd
 
 matplotlib.use("Agg")
-import matplotlib.pyplot as plt     # noqa: E402
-import plotly.express as px         # noqa: E402
-import seaborn as sns               # noqa: E402
+import matplotlib.pyplot as plt
+import plotly.express as px
+import seaborn as sns
 
 from src import config
 

@@ -1,9 +1,5 @@
-"""Data-quality audit and the check of data origin (real vs synthetic).
-
-Topic 31 requires verifying, before any modelling, whether the data look real
-or synthetic: uniform marginal distributions and the absence of natural
-correlations (age-hypertension, BMI-diabetes, ...) point to generated data.
-"""
+# data quality checks + check if the data is real or synthetic
+# (topic 31 asks to check this before training models)
 import json
 
 import numpy as np
@@ -46,11 +42,7 @@ def iqr_outliers(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def uniformity_tests(df: pd.DataFrame) -> pd.DataFrame:
-    """Kolmogorov-Smirnov test of each continuous feature against U(min, max).
-
-    Real clinical variables (BMI, age, lab scores) are bell-shaped or skewed;
-    a high p-value means the sample is indistinguishable from a uniform one.
-    """
+    """KS test: is the feature uniform? real BMI/age are not uniform."""
     rows = []
     for col in config.NUMERIC_FEATURES:
         x = df[col].astype("float64").to_numpy()
@@ -70,7 +62,7 @@ def uniformity_tests(df: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-# Pairs that are strongly correlated in real populations
+# these pairs are correlated in real people
 EXPECTED_PAIRS = [("Age", "Hypertension"), ("Age", "Diabetes"),
                   ("BMI", "Diabetes"), ("BMI", "Hypertension"),
                   ("BMI", "PhysicalActivity"), ("Diabetes", "Hypertension"),

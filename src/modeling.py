@@ -1,11 +1,6 @@
-"""Model training and comparison.
-
-Baseline DummyClassifier vs Logistic Regression vs Random Forest (required by
-topic 31) + HistGradientBoosting (extension). All preprocessing lives inside a
-scikit-learn Pipeline, so it is fitted on training folds only (no leakage).
-Hyper-parameters are tuned with stratified 5-fold CV on the training set; the
-hold-out test set (20 %, stratified) is used once for the final comparison.
-"""
+# training and comparing models: Dummy (baseline), Logistic Regression,
+# Random Forest and HistGradientBoosting (extra)
+# preprocessing is inside Pipeline so test data doesn't leak into training
 import io
 import json
 import time
@@ -32,8 +27,8 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 matplotlib.use("Agg")
-import matplotlib.pyplot as plt     # noqa: E402
-import seaborn as sns               # noqa: E402
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 from src import config
 from src.database import get_connection
@@ -63,7 +58,9 @@ def model_specs() -> dict:
             LogisticRegression(max_iter=2000),
             {"clf__C": [0.01, 0.1, 1.0, 10.0, 100.0], "clf__class_weight": [None, "balanced"]}),
         "Random Forest": (
-            RandomForestClassifier(random_state=rs, n_jobs=-1),
+            # n_jobs=1 here because GridSearchCV is already parallel
+            # (nested parallel jobs sometimes crashed with BrokenProcessPool)
+            RandomForestClassifier(random_state=rs, n_jobs=1),
             {"clf__n_estimators": [300], "clf__max_depth": [None, 6, 10],
              "clf__min_samples_leaf": [1, 5, 10], "clf__max_features": ["sqrt", 0.5]}),
         "HistGradientBoosting": (
@@ -127,7 +124,7 @@ def train_models(X_train, y_train, verbose: bool = True) -> dict:
         _, peak = tracemalloc.get_traced_memory()
         tracemalloc.stop()
 
-        # time of a single fit with the best parameters (comparable across models)
+        # fit once more to measure training time
         best = search.best_estimator_
         t0 = time.perf_counter()
         best.fit(X_train, y_train)
@@ -149,7 +146,6 @@ def train_models(X_train, y_train, verbose: bool = True) -> dict:
     return fitted
 
 
-# ------------------------------------------------------------------ plots
 def plot_roc_pr(results: dict, y_test) -> str:
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13, 5.2))
     for name, r in results.items():
@@ -276,7 +272,7 @@ def save_to_database(metrics: pd.DataFrame, results: dict, X_test, y_test) -> No
                  row.model_size_kb, row.best_params, now))
             run_id = cur.lastrowid
             r = results[row.model]
-            # patient_id in the DB = row position + 1 (see database.build_tables)
+            # patient_id in db = row index + 1
             preds = [(run_id, int(idx) + 1, int(t), float(p), int(pr))
                      for idx, t, p, pr in zip(X_test.index, y_test, r["proba"], r["pred"])]
             conn.executemany("INSERT INTO prediction VALUES (?,?,?,?,?)", preds)

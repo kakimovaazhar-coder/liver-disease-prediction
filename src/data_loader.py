@@ -1,9 +1,5 @@
-"""Loading the raw CSV: download, chunked reading, dtype optimisation, Parquet.
-
-The dataset is small (1 700 rows), but the code is written exactly as for a
-large file: it never needs the whole CSV in memory at once (chunksize), it
-downcasts every column and stores the result in columnar Parquet format.
-"""
+# loading the csv: read it in chunks, make dtypes smaller, save to parquet
+# the file is small but we wrote it like for a big file
 import json
 import time
 import urllib.request
@@ -13,7 +9,7 @@ import pandas as pd
 from src import config
 from src.privacy import add_pseudonymous_id
 
-# Target dtypes chosen from the documented value ranges (see config.VALID_RANGES)
+# smallest dtypes that fit the value ranges
 OPTIMAL_DTYPES = {
     "Age": "uint8",
     "Gender": "uint8",
@@ -38,7 +34,7 @@ def download_dataset(force: bool = False) -> bool:
         print(f"Downloading {config.DATASET_URL} ...")
         urllib.request.urlretrieve(config.DATASET_URL, config.RAW_CSV)
         return True
-    except OSError as err:          # URLError / HTTPError are OSError subclasses
+    except OSError as err:          # no internet or bad url
         print(f"[ERROR] Could not download the dataset: {err}")
         print(f"Download it manually from {config.DATASET_PAGE} "
               f"and put it to {config.RAW_CSV}")
@@ -56,16 +52,13 @@ def optimize_dtypes(df: pd.DataFrame) -> pd.DataFrame:
     for col, dtype in OPTIMAL_DTYPES.items():
         if col in out.columns and out[col].notna().all():
             out[col] = out[col].astype(dtype)
-        elif col in out.columns:          # keep NaN-capable float for gaps
+        elif col in out.columns:          # int can't store NaN
             out[col] = pd.to_numeric(out[col], errors="coerce").astype("float32")
     return out
 
 
 def load_in_chunks(path=config.RAW_CSV, chunksize: int = config.CHUNK_SIZE):
-    """Read the CSV chunk by chunk, optimising each chunk before concatenation.
-
-    Returns the optimised DataFrame and a list of per-chunk statistics.
-    """
+    """Read csv in chunks and optimize each chunk."""
     chunks, chunk_stats = [], []
     for i, chunk in enumerate(pd.read_csv(path, chunksize=chunksize)):
         before = memory_mb(chunk)
@@ -78,10 +71,7 @@ def load_in_chunks(path=config.RAW_CSV, chunksize: int = config.CHUNK_SIZE):
 
 
 def load_and_store(verbose: bool = True) -> pd.DataFrame:
-    """Full ingestion step: CSV -> chunks -> optimised dtypes -> Parquet.
-
-    Also writes a memory report (results/tables/memory_report.json).
-    """
+    """csv -> chunks -> smaller dtypes -> parquet, and save memory report."""
     config.ensure_dirs()
     if not download_dataset():
         raise FileNotFoundError(config.RAW_CSV)

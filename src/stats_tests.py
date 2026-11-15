@@ -1,11 +1,5 @@
-"""Statistical tests of association between risk factors and the diagnosis.
-
-* chi-square test of independence (+ Cramer's V) for categorical factors;
-* Mann-Whitney U test (+ rank-biserial effect size) for numeric factors;
-* Holm correction for multiple testing;
-* crude odds ratios (2x2 tables, Woolf CI) and adjusted odds ratios from a
-  multivariable logistic regression (statsmodels).
-"""
+# statistical tests: chi-square for categorical features,
+# mann-whitney for numeric ones, and odds ratios
 import matplotlib
 import numpy as np
 import pandas as pd
@@ -14,7 +8,7 @@ from scipy import stats
 from statsmodels.stats.multitest import multipletests
 
 matplotlib.use("Agg")
-import matplotlib.pyplot as plt     # noqa: E402
+import matplotlib.pyplot as plt
 
 from src import config
 
@@ -63,8 +57,7 @@ def crude_odds_ratios(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def adjusted_odds_ratios(df: pd.DataFrame):
-    """Multivariable logit. Numeric features are standardised, so their OR is
-    'per 1 standard deviation'; GeneticRisk is dummy-coded vs 'Low'."""
+    """Logistic regression with all features. numeric are scaled -> OR per 1 SD."""
     X = df[config.ALL_FEATURES].astype(float).copy()
     for col in config.NUMERIC_FEATURES:
         X[col] = (X[col] - X[col].mean()) / X[col].std()

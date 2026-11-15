@@ -1,9 +1,5 @@
-"""Analytical SQL queries (JOIN, GROUP BY/HAVING, subqueries, CTE, window
-functions). Every result is loaded into pandas and saved to results/tables.
-
-Groups with fewer than 10 patients are excluded with HAVING COUNT(*) >= 10
-(small-group suppression rule of Cluster 6).
-"""
+# our sql queries for the analysis
+# HAVING COUNT(*) >= 10 is used so small groups are not shown
 from src import config
 from src.database import run_query
 
@@ -234,12 +230,12 @@ def run_all_queries(verbose: bool = True, include_experiments: bool = False) -> 
     for name, q in selected.items():
         try:
             df = run_query(q["sql"])
-        except Exception as err:          # sqlite3.OperationalError, pandas errors
+        except Exception as err:          # e.g. sql syntax error
             print(f"[ERROR] {name}: {err}")
             continue
         df.to_csv(config.TABLE_DIR / f"sql_{name}.csv", index=False)
         results[name] = df
         if verbose:
-            print(f"\n=== {name}: {q['title']}")
+            print(f"\n{name} - {q['title']}")
             print(df.to_string(index=False))
     return results
