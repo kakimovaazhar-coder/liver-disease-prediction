@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+.vscode/
+.idea/
+
+# secret salt for pseudonymisation - never commit
+data/.salt
+
+# regenerated artefacts
+data/liver.db
+results/benchmark_tmp/
+results/run_log.json
+results/models/*.joblib
+!results/models/best_model.joblib
