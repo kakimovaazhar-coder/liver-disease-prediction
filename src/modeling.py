@@ -116,7 +116,7 @@ def train_models(X_train, y_train, verbose: bool = True) -> dict:
     for name, (estimator, grid) in model_specs().items():
         pipe = Pipeline([("prep", make_preprocessor()), ("clf", estimator)])
         search = GridSearchCV(pipe, grid or {"clf__strategy": ["prior"]},
-                              scoring="roc_auc", cv=cv, n_jobs=-1, refit=True)
+                              scoring="roc_auc", cv=cv, n_jobs=4, refit=True)
         tracemalloc.start()
         t0 = time.perf_counter()
         search.fit(X_train, y_train)
@@ -210,7 +210,7 @@ def importance_analysis(fitted: dict, X_test, y_test) -> pd.DataFrame:
     for name in ["Logistic Regression", "Random Forest", "HistGradientBoosting"]:
         pi = permutation_importance(fitted[name]["model"], X_test, y_test,
                                     scoring="roc_auc", n_repeats=20,
-                                    random_state=config.RANDOM_STATE, n_jobs=-1)
+                                    random_state=config.RANDOM_STATE, n_jobs=4)
         frames.append(pd.DataFrame({"model": name, "feature": X_test.columns,
                                     "importance_mean": pi.importances_mean,
                                     "importance_std": pi.importances_std}))
